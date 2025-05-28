@@ -20,5 +20,5 @@
     -p, --password    Password (prompted if omitted)
     -b, --blog        Blog name (without .tumblr.com)
     -t, --tfa         2FA code (prompted if omitted when required)
-    -c			      conversation id (prompted if omitted when required)
+    -c                conversation id (prompted if omitted when required)
     --skip-ssl        Disable SSL verification (not recommended)
