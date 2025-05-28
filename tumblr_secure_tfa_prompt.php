@@ -234,13 +234,13 @@ if ($conversation === '') {
     echo "Selected conversation ID: $conversation\n\n";
 }
 
-    // NEU: Nachfragen, ob in Datei gespeichert werden soll
+    // prompt for saving conversation
     fwrite(STDOUT, "Do you want to save the conversation to a file? (y/N): ");
     $answer = trim(fgets(STDIN));
     if (in_array(strtolower($answer), ['y','yes'], true)) {
         $saveToFile = true;
         $filename   = $conversation . '.txt';
-        // Starte Buffer, um spätere Echo-Ausgaben abzufangen
+        // start buffer
         ob_start();
     } else {
         $saveToFile = false;
@@ -315,7 +315,7 @@ if ($file == "") {
         }
     }
 }
-// NEU: Wenn gespeichert werden soll, schreibe Buffer in Datei
+// if save prompt was answered with yes save.
 if (!empty($saveToFile) && ob_get_length() !== false) {
     $content = ob_get_clean();
     if (file_put_contents($filename, $content) === false) {
@@ -324,7 +324,7 @@ if (!empty($saveToFile) && ob_get_length() !== false) {
     }
     echo "Conversation output saved to $filename\n";
 } else {
-    // Wenn nicht gespeichert, gebe Buffer einfach frei (no-op, da nicht gestartet)
+    // if no save was prompted free buffer
     if (ob_get_length() !== false) {
         ob_end_flush();
     }
